@@ -1,0 +1,18 @@
+User observational data can be put here and read and plotted by ITERA 
+ The data should be placed in an ascii file ending with '.data'
+ The format should follow what is shown in the example files.
+Basically:
+ All lines that beging with "%" are taken to be comments
+ Data MUST be either comma or tab separated 
+ First column is taken to be the label for the data
+  following columns are the line fluxes 
+  (absolute or relative to H-beta, but must be consistent)
+ First Row identifies the lines being used. 
+  for now it MUST use the integer identifier in linelist.txt
+ Currently Uncertainties cannot be included
+
+The file can include any number of objects, though ITERA is limited 
+to 100 by default. Similarly any number of lines may be included, but 
+they must be listed n the linelist.txt file currently being used by 
+ITERA to be plotted (ie mappings linelist or cloudy linelist). 
+

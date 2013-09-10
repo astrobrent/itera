@@ -1,0 +1,313 @@
+ITERA -- Instructions
+==============================================================================
+
+ITERA, the IDL Tool for Emission-line Ratio Analysis, is a tool to enable
+astronomers to compare observations of emission line ratios with that
+determined by photoionization and shock models.It can also be used as
+a predictive tool, to see which line ratios provide strongest
+diagnostic for a given physical parameter.
+
+The diagrams are plotted in 2-4 easy steps:
+1)Select the emission lines for the ratio, either from the boxes on the
+  left or from the "Std. Diagrams" menu.
+2)Select which type of models you would like to plot from the tree
+  menu next to the line selection boxes
+3)Add any data points for comparison.
+4)Save the model grids or alter & print the plot using the various
+  menu options
+
+1. Emission Lines Selection
+--------------------------------------------
+On the left side of the ITERA interface are the 4 line selection
+boxes (X1, X2, Y1, & Y2), which are used to choose the ratios for the
+plot window on the right. The X-axis is given by Log10(X1/X2), while
+the Y-Axis is given by Log10(Y1/Y2).
+
+To choose the emission lines simply click on the chosen line in the
+relavent selection box. The selected lines are shown in the boxes to
+the left of the selection boxes. Multiple lines may be selected and
+will be summed. To clear the selected lines, click on the "Clear **"
+button below the display boxes.
+
+Several standard emission line ratio diagrams are pre-defined in the 
+"Std. Diagrams" menu in the menubar at the top. Selecting one of the 
+listed diagrams will automatically select all lines necessary for that 
+diagram. As discussed below, the user can add to this list of standard 
+diagrams if they wish..
+
+Currently up to 1770 emission lines can be displayed in the selection boxes, 
+arising from both atomic and ionized species of 16 elements. The displayed 
+lines can be limited through the "LineList" option in the menubar, such 
+that only lines in given parameter ranges are displayed.
+
+This full emission line list is based upon the output from the MAPPINGSIII 
+photoionization and shock code. The full line list can be extended by the 
+user as discussed below, though models which include those lines must also 
+be added. 
+
+The "Reset All" button (lower right of ITERA) can also be used to clear all
+selected lines and models
+
+2. Select a Model Grid
+----------------------
+In the middle of ITERA is the model selection tool. There are five folders 
+listed, each containing different models.As stated in the README file, 
+these directories will be empty unless the associated data files (found 
+at the same location as the ITERA program) are installed.
+
+The five folders separate the different classes of models. The first
+three represent the main classes of galaxy-scale ionization: Shocks,
+AGN and star-formation, while thelast are for user created models and
+observations. All of these classes are discussed below.
+
+To select a model, simply choose which class of model, by' expanding'
+the directory tree, and descend this tree until the specific model is
+found. For example, for pure shock models, we choose the "shock
+models" option, then the "shock" option, which then display the list
+of possible model series to display (differentiated from the model
+class by appearig as a text file.
+
+To choose a model series, simply click on the model. If the emission
+lines for the ratios have been selected, the selected model series should
+appear in the diagram box to the right.
+
+Multiple model series can be plotted by simply clicking on the
+individual models. By default this is limited to 10 models for clarity
+and memory efficiency, but this can be altered at start-up by setting:
+
+IDL>itera, max_models=#, 
+
+where # is the maximum number of models you wish to plot. The selected
+models are cleared by clicking on the "Clear Selected Models" button.
+
+The "Reset All" button (lower right of ITERA) can also be used to clear all
+selected models and lines.
+
+
+2.1 Model Series
+----------------
+The individual model series listed in the model tree generally list the
+name of the model, and then two out of four free parameters of the
+model, with the other two parameters forming the grid that will be
+plotted in the diagram to the right. These four parameters that
+distinguish the model are:
+1) Metallicity: the metallicity (usually relative to Solar) of the
+   ionized gas in the model. Abundance variations can also be included
+   here.
+2) Density: the hydrogen number density of the modelled gas. If the
+   gas is isobaric (const. pressure), then this is determined by
+   dividing the pressure by kT, generally assuming a temperature of
+   T=10,000K. 
+3) Model-specific free parameter 2: this parameter is specific to the
+   model series, and is most commonly plotted in diagnostic diagrams,
+   such as age of an ionizing stellar cluster or power-law index of an
+   ionizing AGN spectrum. 
+4) Model-specific free parameter 1: This is generally the dominant
+   parameter of the model, and also specific to the model
+   series. Examples are ionization parameter or shock velocity. 
+
+The latter two parameters can be set to any parameters in the User
+specfied models.
+Once a model (and line ratios) are selected, a grid of the selected
+model series is plotted in the diagnostic diagram on the right. This
+grid is formed from the Model-specific free parameter 1, and one of
+the fist three parameters. Which of these parameters is plotted is
+determined by the "2nd Parameter for Grid" selection box, which is set
+to the Unique Parameter (Model-specific free parameter 2) by
+default. The other two parameters are fixed to the values listed in
+the model series name in the model selection box.
+
+2.2 Model Description
+---------------------
+Below the model selection box is a small text box which describes the
+last selected model. On five lines you have:
+
+Model name    : This generally describes the mode such as "shock" or
+      	      	"Dusty AGN".
+Metallicity   : This gives the value (or range) of the metallcity in
+      	      	the selected models. This is generally given as either
+      	      	a multiple of solar metallicity or a reference to the
+      	      	abundances. 
+Density	      : This is the number density of hydrogen
+      	      	(in cm^-3). If an isobaric model, T=10,000 K is
+      	      	assumed. 
+Parameter 2   : This gives the secondary unique parameter for the
+      	      	models (ie magnetic field B or starburst age etc). See
+      	      	references for units.
+Parameter 1   : This is the dominant parameter of the models (such as
+      	      	ionization parameter) and always given as a range. See
+      	      	references for units.  
+
+2.3 Limiting Parameter Ranges
+-----------------------------
+The two parameters chosen for the grid to be plotted on the diagram
+can be limitted to a smaller range or even single values by clicking
+the "Limit Parameter Ranges" button. A pop-up box will appear with the
+current ranges of the two parameters (as labelled) based upon the
+first model selected. 
+
+
+3. The Diagnostic Diagram
+-------------------------
+The far right of the ITERA display is the emission-line ratio diagnostic
+diagram window. Once the emission lines and the model(s) have been
+selected, the chosen diagram will appear in the window, showing the
+model grids for the selected models and lines.
+This diagram will automatically update with added models or lines, or changes
+in the model range. 
+
+
+3.1 Zoom
+--------
+There are two ways in which to zoom in on the diagram.
+The first is a dynamic box zoom, where by clicking in the plot window
+and dragging the box you can zoom in to the desired size.  Note that
+this box can be outside the marked axes.
+The second is the stated ranges below the display window. These show
+the current X & Y ranges and can be changed by either typing in the
+desired min & max values or by dragging the slide bars. The ranges are
+limited to -10 to 10, given that observations outside this dynamic
+range are unlikely.
+
+This range can be reset to the default -3 to 3 for both axes by
+clicking on the "Reset Range" button. 
+
+3.2 Grid Labels
+---------------
+There are a choice of 3 labels for the shown diagnostic diagram,
+selected by clicking on the button in the "Labels" box:
+"None"	    : No labels are shown on the diagram. Select this for
+	      clarity. ITERA starts off with this option.
+"Colours"   : Colour bars are displayed to the left of the
+	      diagram,displaying both the name and selected values of
+	      the grid.
+"Grid Vals" : Selected values of the grid are shown, next to the
+	      grid. With parameter 1 values listed at low P2 side, and
+	      parameter 2 values listed at the high P1 side. Note that
+	      as this is automatically generated, it occassionally
+	      will become confused with the grid.
+
+4. Observational Data
+----------------------
+User observational data can be added through the "Add Data" button to
+the lower right of ITERA. Note that this can only be used when the four
+lines for the diagram are selected. Clicking on this will bring up a
+box with two buttons at the top, a display table and the "Ok" and
+"Cancel" buttons.
+
+Clicking on the "Add Data Point" will bring up another window where
+the X & Y values (the currently displayed line ratios) of the
+observation can be entered, along with a label for the observational
+point. 
+
+If multiple observational data exists, then this can be read in via
+a file. Clicking on the  "Read Data File" will bring up a file window
+where the data file can be entered and read in. 
+The data file must be in a specific format. Any line beginning
+with '%' or ';' is taken as a comment. The lines containing data  MUST
+have the X and Y values first (in that order). Any data after these is
+taken as a label for that data point (INCLUDE EXAMPLE FILE?).
+
+Once data is entered it appears in the display table. Futher data can
+be added by clicking either the "Add Data Point" or "Read Data File"
+buttons. This data can then be plotted by Clicking "Ok" or cleared by
+clicking on "Cancel".
+
+This data only applies to the current diagram. If either the models or
+lines are cleared, the data is cleared as well.
+
+5.Exporting the Data
+--------------------
+Once a line ratio diagram has been chosen and filled with the chosen
+models and explored, it can be exported in two ways. The diagram can
+be directly printed to an encapsulated postscript file by clicking on
+the "File" menu button and then "Print" button, where the name of the
+output file can be chosen. The printed file will appear exactly as in
+the display window, with the chosen model and plot ranges, and grid
+labelling. 
+
+The chosen line ratios for the model grids can also be exported by the
+"save Grids" option in the "File" menu. This will save chosen
+models in a file, listing in six columns; the parameter 2 values, the
+parameter 1 values and the fluxes of the chosen emission lines (or
+sums) relative to the H-beta line.
+These files can then be used for User defined plots, or re-read into
+the ITERA procedures (see "Command-line Options" below).
+
+6. Model data
+------------------------
+The data for the models is found in four subdirectories within the
+ITERA directory (AGNdata,Shockdata, SBdata, Userdata.  
+The models appear as HDF files, separated by directory
+structure into different model runs (Shock,shock+precursor etc). 
+The base-level model runs for ITERA are provided as tar files,
+obtainable from the same website as ITERA.  
+
+Each model run
+is separated into HDF-format files, with each file containing a model
+run of given gas metallicity, gas density and model defined parameter,
+as listed in the file name. Within each
+file is the line flux for all available lines for a series in the
+model specific "parameter 1", as well as the values for all model
+parameters. These files can be read into IDL using the "HDF2STRUCT"
+procedure supplied with ITERA. 
+
+6.1 User Generated models
+------------------------
+User generated models can be placed in the Userdata directory. These
+must be in the same HDF format as the other data. Two programs
+(CONVERT_MAPSPECFILE and CONVERT_MAPSPEC) are provided to convert
+MAPPINGS III generated spectral files into the necessary HDF file 
+(a single file or a series of spec** respectively).Programs for other
+photoionization codes such as CLOUDY are currently being written.
+
+======================================================================
+MENU DESCRIPTION
+
+File Menu
+---------
+Save Grids - Export the chosen emission line fluxes relative to H-beta
+	     of the chosen models to a file.
+Print	   - Print the currently displayed diagnostic diagram to an
+	     encapsulated postscript file.
+Exit	   - Quit ITERA
+
+LineList Menu
+-------------
+Change the list of lines in the line selection boxes. This may be done during 
+the selection of lines. The options include lists of common lines, and
+lists of lines in selected wavelength ranges:
+
+Full Line List - All 1770 lines
+Selected Lines - Strong lines in the UV, optical and IR commonly used
+	 	 for diagnostic diagrams
+Below Lyman Limit - Lists all lines below 102.6 nm (Ly-alpha)
+UV lines       - All lines between 95 nm and 350.0 nm
+Optical lines  - All lines between 350.0 nm and 900.0 nm 
+Near-IR lines  - All lines between 0.9 um and 5 um
+Far -IR lines  - All lines greater than 5 um.
+
+Std. Diagram Menu
+-----------------
+Pre-defined diagnostic diagrams, listing some commonly used strong
+line diagnostics, as well as an area for User defined line ratio
+diagnostic diagrams. Clicking on these will automatically set the four
+emission lines needed. All these diagrams are listed in
+stddiagram_list.txt. The diagrams are:
+[OIII]5007/H-beta vs. [NII]6548,83/H-alpha        
+[OIII]5007/H-beta vs. [SII]6717,30/H-alpha        
+[OIII]5007/H-beta vs. [OI]6300/H-alpha         
+[OIII]5007/H-beta vs. [OII]3727/[OIII]50075007 
+[OIII]5007/H-beta vs. HeII4686/H-beta      
+[OIII]5007/H-beta vs. [OIII]50074363/[OIII]50075007
+[OIII]5007/H-beta vs. [NeV]3426/[NeIII]3868
+CII]2325/CIII]1910 vs. CIV1549/CIII]1910
+[NeV]14.3um/[NeII]12.8um vs. [NeIII]15.5um/[NeII]12.8um
+
+
+Help Menu
+---------
+About	     - Lists details about the current version of ITERA
+Instructions - Lists this file
+
+

@@ -1,0 +1,12 @@
+  X1 : X2 : Y1 : Y2 : 'Description'
+1432,1435 : 1434 : 1400 : 1393 : [OIII]/H-beta vs. [NII]/H-alpha
+1439,1440 : 1434 : 1400 : 1393 : [OIII]/H-beta vs. [SII]/H-alpha
+1422	  : 1434 : 1400 : 1393 : [OIII]/H-beta vs. [OI]/H-alpha
+1345,1346 : 1400 : 1400 : 1393 : [OIII]/H-beta vs. [OII]3727/[OIII]5007
+1384	  : 1393 : 1400 : 1393 : [OIII]/H-beta vs. HeII4686/H-beta
+1377	  : 1400 : 1400 : 1393 : [OIII]/H-beta vs. [OIII]4363/[OIII]5007
+1331	  : 1354 : 1400 : 1393 : [OIII]/H-beta vs. [NeV]3426/[NeIII]3868
+1209,1210 : 1247,1248 : 1277 : 1247,1248 : CII]/CIII] vs. CIV/CIII]
+1694	  : 1686 : 1690 : 1686 : [NeV]14.3um/[NeII]12.8um vs. [NeIII]15.5um/[NeII]12.8um
+-------------PUT YOUR LINES AFTER THIS----------------------------
+1226,1227,1228,1230,1231:1112:1400:1393:[OIII]/H-beta vs. NIII1750/NIII]991
